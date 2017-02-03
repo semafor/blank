@@ -5,11 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>{{ .Title }}</title>
-	{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
-	{{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+	{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{- end -}}
+	{{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{- end -}}
 	<link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css">
-	{{ if .RSSLink -}}<link href="{{ .RSSLink }}" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}">{{- end }}
-	{{ .Hugo.Generator }}
 </head>
 <body>
 	<header>
@@ -21,4 +19,7 @@
 				{{ end }}
 			</ul>
 		</nav>
+		<div class="search">
+			<input type="search" placeholder="Search..." name="search">
+		</div>
 	</header>

@@ -1,0 +1,10 @@
+/* Creates a new font face. */
+@font-face {
+    font-family: "mediadb";
+    src: url(/fonts/SanFranciscoText-Regular.otf) format("opentype");
+}
+
+body {
+    font-family: "mediadb", verdana, "sans-serif";
+    font-size: 19px;
+}

@@ -1,9 +1,9 @@
 {{ partial "header.html" . }}
 	<main>
-		{{ $paginator := .Paginate (where .Site.Pages "Type" "post") }}
+		{{ $paginator := .Paginate (where .Site.Pages "Type" "film") }}
 		{{ range $paginator.Pages }}
-			{{ partial "summary.html" . }}
-		{{ end }}
+			{{- partial "summary.html" . -}}
+		{{ end -}}
 		{{ partial "pagination.html" . }}
 	</main>
 {{ partial "sidebar.html" . }}

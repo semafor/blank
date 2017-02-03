@@ -1,0 +1,14 @@
+{{ partial "header.html" . }}
+    <main>
+        <article>
+            <h1>{{ .Params.name }}</h1>
+            <div>
+                <ul class="film-list">
+                    {{ range .Params.films }}
+                    <li><a href="{{ "/film/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
+                    {{ end }}
+                </ul>
+            </div>
+        </article>
+    </main>
+{{ partial "footer.html" . }}
