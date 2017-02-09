@@ -7,14 +7,16 @@
 	<title>{{ .Title }}</title>
 	{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{- end -}}
 	{{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{- end -}}
-	<link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css">
+	<link rel="stylesheet" href="{{ .Site.BaseURL }}css/normalize.css">
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css">
 </head>
 <body>
+    <div id="backdrop"></div>
 	<header>
-		<a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
-		<nav>
+		<a class="site-title" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+		<nav class="site-nav">
 			<ul>
-				{{ range .Site.Menus.main }}
+				{{ range .Site.Menus.custom }}
 				<li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
 				{{ end }}
 			</ul>

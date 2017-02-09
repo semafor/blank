@@ -1,10 +1,9 @@
-<article>
-	<h1>
-		<a href="{{ .Permalink }}">{{ .Title }}</a>
-	</h1>
-	<div class="preview-image">
-		<a href="{{ .Permalink }}">
-			<img src="{{ .Params.mainart }}">
-		</a>
-	</div>
+<article class="summary">
+    <a href="{{ .Permalink }}" title="{{ .Title }}">
+        <div class="preview-image" style="background-image: url('{{ .Params.mainart }}')">
+        </div>
+    	<h3>
+    		{{ .Title }}
+    	</h3>
+    </a>
 </article>

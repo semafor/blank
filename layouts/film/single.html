@@ -1,0 +1,17 @@
+{{ partial "header.html" . }}
+    <main>
+        <article>
+            <h1>{{ .Title }}</h1>
+            <div>
+                {{ .Params.summary }}
+            </div>
+            <div>
+                <ul class="actor-list">
+                    {{ range .Params.actors }}
+                    <li><a href="{{ "/actor/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
+                    {{ end }}
+                </ul>
+            </div>
+        </article>
+    </main>
+{{ partial "footer.html" . }}

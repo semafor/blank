@@ -1,10 +1,29 @@
 {{ partial "header.html" . }}
 	<main>
-		{{ $paginator := .Paginate (where .Site.Pages "Type" "film") }}
-		{{ range $paginator.Pages }}
-			{{- partial "summary.html" . -}}
-		{{ end -}}
-		{{ partial "pagination.html" . }}
+        <div class="movie-section recently-added">
+            <h2><span>Siste tilgjengeliggjorte filmer</span></h2>
+
+            {{ $paginator := .Paginate (where .Site.Pages "Type" "film") }}
+            {{ range $paginator.Pages }}
+                {{- partial "summary.html" . -}}
+            {{ end -}}
+        </div>
+        <div class="movie-section recently-loaned">
+            <h2><span>Nettopp lånt</span></h2>
+
+            {{ $paginator := .Paginate (where .Site.Pages "Type" "film") }}
+            {{ range $paginator.Pages }}
+                {{- partial "summary.html" . -}}
+            {{ end -}}
+        </div>
+        <div class="movie-section recommended-movies">
+            <h2><span>Anbefalinger</span></h2>
+
+    		{{ $paginator := .Paginate (where .Site.Pages "Type" "film") }}
+    		{{ range $paginator.Pages }}
+    			{{- partial "summary.html" . -}}
+    		{{ end -}}
+        </div>
 	</main>
 {{ partial "sidebar.html" . }}
 {{ partial "footer.html" . }}
