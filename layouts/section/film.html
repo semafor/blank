@@ -1,0 +1,9 @@
+{{ partial "header.html" . }}
+    <main>
+        {{ $paginator := .Paginate (where .Site.Pages "Type" "film") }}
+        {{ range $paginator.Pages }}
+            {{ partial "summary.html" . }}
+        {{ end }}
+    </main>
+{{ partial "sidebar.html" . }}
+{{ partial "footer.html" . }}

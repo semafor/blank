@@ -1,4 +1,4 @@
-<article class="summary">
+<article class="summary{{ if (isset .Params "onloan") }} on-loan{{ end }}">
     <a href="{{ .Permalink }}" title="{{ .Title }}">
         <div class="preview-image" style="background-image: url('{{ .Params.mainart }}')">
         </div>

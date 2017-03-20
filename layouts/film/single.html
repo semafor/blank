@@ -1,17 +1,77 @@
 {{ partial "header.html" . }}
-    <main>
+    <main class="film-single single-view">
         <article>
-            <h1>{{ .Title }}</h1>
-            <div>
-                {{ .Params.summary }}
+
+            <div class="meta">
+
+                <img alt="{{ .Title }}" class="main-art" src="{{ .Params.mainart | relURL }}">
+
+                <ul class="meta-menu">
+                    {{ if (isset .Params "trailerurl") }}
+                    <li class="play-trailer"><a href="{{ .Params.trailerUrl }}">Play trailer</a></li>
+                    {{ end }}
+                    <li class="rate-movie"><a href="javascript:openDialog()">Vurdér film</a></li>
+                    <li class="add-movie"><a>Liste</a></li>
+                </ul>
+
             </div>
-            <div>
+
+            <div class="film-information">
+                <h1>{{ .Title }}</h1>
+                <p class="film-year-origin">{{ .Params.made }} — {{ .Params.originCountries }}</p>
+                {{ if (isset .Params "onloan") }}
+                <p class="film-on-loan">Utlånt</p>
+                {{ end }}
+                <p class="film-summary">{{ .Params.summary }}</p>
+
+
+                {{ if (isset .Params "director") }}
+                <h2>Regissør</h2>
+                <p>{{ .Params.director }}</p>
+                {{ end }}
+
+                {{ if (isset .Params "actors") }}
+                <h2>Medvirkende</h2>
                 <ul class="actor-list">
                     {{ range .Params.actors }}
-                    <li><a href="{{ "/actor/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
+                    <li><a href="{{ "/actor/" | relLangURL }}{{ . | urlize }}.html">{{ . }}</a> </li>
                     {{ end }}
                 </ul>
+                {{ end }}
+
+                {{ if (isset .Params "genres") }}
+                <h2>Sjangre</h2>
+                <nav class="genre-nav inline-menu">
+                    <ul>
+                        {{ range .Params.genres }}
+                        <li><a href="{{ "/genre/" | relLangURL }}{{ . | urlize }}.html">{{ . }}</a></li>
+                        {{ end }}
+                    </ul>
+                </nav>
+                {{ end }}
+
+                {{ if (isset .Params "runtime") }}
+                <h2>Spilletid</h2>
+                <p>{{ .Params.runtime }} minutter</p>
+                {{ end }}
             </div>
+
         </article>
+
     </main>
+
+    <div class="rating-dialog dialog">
+        <a href="javascript:closeDialog()" class="dialog-close">×</a>
+        <p class="dialog-title">Hva synes du om denne filmen?</p>
+        <select name="rating">
+            <option>Vennligst velg…</option>
+            <option value="5">5 - Fantastisk</option>
+            <option value="4">4 - Bra</option>
+            <option value="3">3 - Ok</option>
+            <option value="2">2 - Ikke bra</option>
+            <option value="1">1 - Dårlig</option>
+        </select>
+
+        <button class="action-button button" onclick="closeDialog()">Lagre</button>
+    </div>
 {{ partial "footer.html" . }}

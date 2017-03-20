@@ -1,7 +1,7 @@
 /* Creates a new font face. */
 @font-face {
     font-family: "mediadb";
-    src: url(/fonts/SanFranciscoText-Regular.otf) format("opentype");
+    src: url("../fonts/SanFranciscoText-Regular.otf") format("opentype");
 }
 
 body {
@@ -9,10 +9,27 @@ body {
     font-size: 19px;
     background-color: #000;
     padding: 0;
+    color: white;
+    min-width: 400px;
+}
+
+body.show-dialog {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    height: 100%;
 }
 
 a {
+    color: white;
     text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 ul {
@@ -29,13 +46,13 @@ header {
     height: 70px;
     border-bottom: 3px solid black;
     padding: 0 30px;
+    z-index: 10;
 }
 
 .site-title {
-    color: white;
     font-weight: bold;
     letter-spacing: -0.1em;
-    font-size: 2em;
+    font-size: 1em;
     text-transform: lowercase;
     text-shadow: 1px 1px 0 black;
     line-height: 70px;
@@ -44,17 +61,66 @@ header {
 }
 
 .site-nav {
-    display: inline-block;
-    vertical-align: text-bottom;
+    position: absolute;
+    top: 16px;
+    left: 115px;
+}
+
+.site-nav ul {
+    list-style: none;
+    position: absolute;
+    background-color: rgb(58,92,96);
+    top: 40px;
+    display: none;
+}
+
+.site-nav.open ul {
+    display: block;
+}
+
+.site-nav li a {
+    padding: 15px;
+    display: block;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    transition: background-color 100ms;
+}
+
+.site-nav li a:hover {
+    background-color: rgba(255,255,255,0.3);
+}
+
+.site-nav li:last-child a {
+    border-bottom: none;
+}
+
+.site-nav-toggle {
+    background-image: url(../img/account.svg);
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+    background-position: center center;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    margin: 0;
+    cursor: pointer;
+    transition: background-color 100ms;
 
 }
 
-.site-nav li, .site-nav a {
+.site-nav.open .site-nav-toggle {
+    background-color: rgb(58,92,96);
+}
+
+.site-nav-toggle:hover {
+    background-color: rgba(255,255,255,0.3);
+}
+
+.inline-menu li, .inline-menu a {
     display: inline-block;
 }
 
-.site-nav a {
-    color: white;
+.inline-menu a {
     margin-right: 1em;
     border: 1px solid rgba(255,255,255,0.5);
     border-radius: 0.5em;
@@ -63,25 +129,34 @@ header {
     transition: background-color 100ms;
 }
 
-.site-nav a:hover {
+.inline-menu a:hover {
     background-color: rgba(255,255,255,0.3);
+    text-decoration: none;
 }
 
 .search {
-    vertical-align: text-bottom;
-    width: 150px;
-    display: inline-block;
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    font-size: 16px;
 }
 
 
 .search input {
     width: 150px;
+    text-align: center;
     border-radius: 5px;
     padding: 5px;
-    border: 1px solid rgba(255,255,255,0.3);
-    background-color: transparent;
-    color: rgba(255,255,255,0.85);
+    border: 0;
+    background-color: rgba(255,255,255,0.2);
+    border: black;
+    color: white;
     transition: width 250ms;
+    background-image: url(../img/find.svg);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    color: white;
+    background-position: 10px 50%
 
 }
 
@@ -89,54 +164,265 @@ header {
     width: 300px;
 }
 
-main {
-    padding: 30px;
+.search button {
+    display: none;
 }
 
-.movie-section {
+main {
+    padding: 71px 30px 30px 30px;
+}
+
+.front-section {
     clear: both;
     margin-bottom: 60px;
 }
 
-.movie-section h2 {
-    color: white;
+.front-section h2 {
     font-size: 1em;
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8bw8AAkMBQJZrKwoAAAAASUVORK5CYII=);
     background-repeat: repeat-x;
     background-position: 50%;
 }
 
-.movie-section h2 span {
+.front-section h2 span {
     background-color: black;
     padding: 0 30px 0 0;
 }
 
+.movie-section {
+    margin-right: -30px;
+}
+
 .summary {
-    display: inline-block;
-    width: 200px;
-    margin-right: 15px;
+    display: block;
+    float: left;
+    width: 50%;
+
     margin-top: 15px;
+    padding-right: 30px;
+    box-sizing: border-box;
+    transition: width 100ms, height 100ms;
+    position: relative;
+}
+
+.on-loan:after {
+    display: block;
+    height: 40px;
+    position: absolute;
+    left: 5px;
+    right: 33px;
+    top: 5px;
+    background-color: rgba(178,34,34,0.9);
+    content: "Utlånt";
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 40px;
+    text-shadow: 1px 1px 1px black;
+    box-shadow: 1px 1px 1px black;
 }
 
 .preview-image {
     width: 100%;
-    height: 250px;
+    height: 300px;
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
     border: 1px solid rgba(255,255,255,0.15);
+    transition: width 100ms, height 100ms;
 }
 
 .summary a {
 }
 
 .summary h3 {
-    color: white;
     font-size: 0.8em;
     text-align: center;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.routines-section ol {
+    max-width: 700px;
+}
+
+.film-single .film-on-loan {
+    display: inline-block;
+    padding: 0 10px;
+    background-color: rgba(178,34,34,0.9);
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 40px;
+    text-shadow: 1px 1px 1px black;
+    box-shadow: 1px 1px 1px black;
+
+}
+
+.film-single .film-information {
+    position: relative;
+    margin: -30px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 25%,rgba(0,0,0,1) 100%);
+    padding: 30px;
+    padding-top: 150px;
+    min-height: 500px;
+}
+
+.film-single .film-information p {
+    margin-top: 0;
+}
+
+.film-single .main-art {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 71px;
+    display: block;
+    width: 100%;
+    clip: rect(0,100000px,500px,0);
+    opacity: 0.9;
+}
+
+.film-single .film-year-origin {
+    color: #ccc;
+    margin-top: -25px;
+    font-size: 1.2em;
+}
+
+.film-single .film-summary {
+    max-width: 800px;
+}
+
+.single-view h2 {
+    font-size: 0.8em;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: #999;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.film-single .actor-list {
+    margin-top: 0;
+}
+
+.film-single .actor-list li {
+    display: inline;
+}
+
+.film-single .actor-list li:after {
+    content: ",";
+}
+
+.film-single .actor-list li:last-child:after {
+    content: "";
+}
+
+.film-single .genre-nav {
+
+}
+
+.film-single .meta-menu {
+    list-style: none;
+    position: relative;
+    z-index: 1;
+    top: 150px;
+}
+
+
+.film-single .meta-menu li {
+    display: inline-block;
+}
+
+.film-single .meta-menu li a {
+    padding: 10px 0;
+    font-size: 0.6em;
+    font-weight: bold;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.film-single .meta-menu .play-trailer a {
+    background-image: url(../img/media-playback-start.svg);
+    padding-left: 20px;
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    background-position: center left;
+}
+
+.film-single .meta-menu .rate-movie a {
+    background-image: url(../img/non-starred.svg);
+    padding-left: 20px;
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    background-position: center left;
+}
+
+.film-single .meta-menu .add-movie a {
+    background-image: url(../img/add.svg);
+    padding-left: 20px;
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    background-position: center left;
+}
+
+.film-single .play-trailer {
+    display: block;
+    clear: left;
+}
+
+.dialog {
+    display: none;
+    width: 300px;
+    position: fixed;
+    left: 50%;
+    margin-left: -150px;
+    background-color: white;
+    z-index: 20;
+    top: 100px;
+    padding: 30px;
+    color: black;
+}
+
+.dialog-close {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 2em;
+    color: #888;
+    cursor: pointer;
+}
+
+.dialog-title {
+    margin-top: 0;
+}
+
+.dialog-close:hover {
+    color: #000;
+}
+
+.show-dialog .dialog,
+.show-dialog .dialog-modal {
+    display: block;
+}
+
+.dialog-modal {
+    background-color: rgba(0,0,0,0.75);
+    z-index: 15;
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.single-view .film-list {
+    list-style: none;
+}
+
+.single-view .film-list a {
+    text-transform: capitalize;
 }
 
 footer {
@@ -145,5 +431,4 @@ footer {
 }
 
 footer a {
-    color: white;
 }

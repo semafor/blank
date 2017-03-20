@@ -1,0 +1,16 @@
+{{ partial "header.html" . }}
+    <main class="genre-single single-view">
+        <article>
+            <h1>{{ .Title }}</h1>
+
+            <h2>Filmer i denne sjangeren:</h2>
+            <ul class="film-list">
+                {{ range .Params.associatedFilms }}
+                    {{ range . }}
+                        <li><a href="{{ "/film/" | relLangURL }}{{ .url | urlize }}.html">{{ .name }}</a> </li>
+                    {{ end }}
+                {{ end }}
+            </ul>
+        </article>
+    </main>
+{{ partial "footer.html" . }}

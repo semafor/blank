@@ -1,0 +1,100 @@
+@media only screen and (min-width: 480px) {
+
+.site-title {
+    font-size: 2em;
+}
+
+.site-nav {
+    left: 200px;
+}
+
+}
+
+
+@media only screen and (min-width: 480px) {
+
+.summary {
+    width: 33.3%;
+}
+
+.preview-image {
+    height: 230px;
+}
+
+}
+@media only screen and (min-width: 600px) {
+
+.summary {
+    width: 25%;
+}
+
+.preview-image {
+    height: 200px;
+}
+
+}
+@media only screen and (min-width: 720px) {
+
+.summary {
+    width: 20%;
+}
+
+.preview-image {
+    height: 190px;
+}
+
+
+.film-single .meta {
+    position: static;
+    width: 300px;
+    float: left;
+    margin-top: 5px;
+}
+
+.film-single .film-information {
+    position: static;
+    margin: 0;
+    margin-left: 330px;
+    padding: 0;
+}
+
+.film-single .main-art {
+    position: static;
+    width: 300px;
+    display: block;
+    margin-bottom: 30px;
+    clip: unset;
+}
+
+
+.film-single .meta-menu {
+    list-style: none;
+    position: static;
+}
+
+.film-single .meta-menu li {
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    display: block;
+}
+
+.film-single .meta-menu li a {
+    display: block;
+    font-size: 1em;
+    font-weight: normal;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+}
+
+@media only screen and (min-width: 1024px) {
+
+.summary {
+    width: 200px;
+}
+
+.preview-image {
+    height: 250px;
+}
+
+}

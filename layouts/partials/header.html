@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode | default "en-us" }}">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>{{ .Title }}</title>
 	{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{- end -}}
-	{{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{- end -}}
-	<link rel="stylesheet" href="{{ .Site.BaseURL }}css/normalize.css">
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css">
+	{{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{- end }}
+
+	<link rel="stylesheet" href="{{ "css/normalize.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/style-large.css" | relURL }}">
 </head>
 <body>
     <div id="backdrop"></div>
 	<header>
-		<a class="site-title" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
-		<nav class="site-nav">
-			<ul>
-				{{ range .Site.Menus.custom }}
-				<li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
-				{{ end }}
-			</ul>
+		<a class="site-title" href="{{ "index" |relURL }}.html">{{ .Site.Title }}</a>
+		<nav class="site-nav" id="main-nav">
+            <p class="site-nav-toggle" onclick="toggleSiteNav()"></p>
+            <ul>
+                {{ range .Site.Menus.custom }}
+                <li><a href="{{ .URL | relURL }}.html">{{ .Name }}</a></li>
+                {{ end }}
+                <li><a href="#">Logg av</a></li>
+            </ul>
 		</nav>
 		<div class="search">
-			<input type="search" placeholder="Search..." name="search">
+            <form action="../film.html" id="search-form">
+			     <input type="search" placeholder="Søk…" name="search">
+                 <button form="search-form"></button>
+            </form>
 		</div>
 	</header>

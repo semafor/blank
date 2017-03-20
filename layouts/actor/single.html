@@ -1,14 +1,14 @@
 {{ partial "header.html" . }}
-    <main>
+    <main class="actor-single single-view">
         <article>
-            <h1>{{ .Params.name }}</h1>
-            <div>
-                <ul class="film-list">
-                    {{ range .Params.films }}
-                    <li><a href="{{ "/film/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
-                    {{ end }}
-                </ul>
-            </div>
+            <h1>{{ .Title }}</h1>
+
+            <h2>Har spilt i</h2>
+            <ul class="film-list">
+                {{ range .Params.films }}
+                <li><a href="{{ "/film/" | relLangURL }}{{ . | urlize }}.html">{{ . }}</a> </li>
+                {{ end }}
+            </ul>
         </article>
     </main>
 {{ partial "footer.html" . }}

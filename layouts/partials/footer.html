@@ -1,5 +1,10 @@
-	<footer>
-		<p>{{ .Now.Year }} <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></p>
-	</footer>
+    <footer>
+        <p>{{ .Now.Year }} <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></p>
+    </footer>
+    <div class="dialog-modal"></div>
+    <script src="{{ "js/dialogs.js" | relURL}}"></script>
+    <script src="{{ "js/nav.js" | relURL }}"></script>
+
+    {{ "<!-- Laget av jdr004. -->" | safeHTML }}
 </body>
 </html>
