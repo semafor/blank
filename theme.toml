@@ -5,7 +5,7 @@ description = "MediaDb — theme for UiB's MediaDb."
 homepage = "https://github.com/semafor/blank/"
 tags = []
 features = ["blog"]
-min_version = 0.17
+min_version = 0.15
 
 [author]
   name = "Vimux"

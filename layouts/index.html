@@ -1,6 +1,11 @@
 {{ partial "header.html" . }}
 	<main>
         <div class="movie-section front-section recently-added">
+            <h2><span>Alle filmer</span></h2>
+            <a href="{{ "all_movies" | relURL }}.html">All</a>
+        </div>
+
+        <div class="movie-section front-section recently-added">
             <h2><span>Siste tilgjengeliggjorte filmer</span></h2>
 
             {{ $paginator := .Paginate (where .Site.Pages "Type" "film") }}
