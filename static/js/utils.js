@@ -1,6 +1,11 @@
 /**
 Super simple template implementation.
 
+Supported things:
+    "{{foo}}" given data {foo: "bar"} will produce "bar".
+    "{{foo or "baz"}}" given data {} will produce "baz".
+    "{{foo or "baz"}}" given data {foo: "bar"} will produce "bar".
+
 Note that this will only replace {{foo}}, not {{ foo }} etc.
 
 Author: jdr004
@@ -9,7 +14,7 @@ function template(tmpl, data) {
 
     /* Find {{foo or 'bar'}} and do the right thing: replace foo with 'bar'
     if foo is not defined in data. */
-    var fooOrBarRe = new RegExp("\{{2}([a-z]+) or [\"|\'](.*)[\"|\']\}{2}", "g");
+    var fooOrBarRe = new RegExp("\{{2}([a-z_]+) or [\"|\'](.*)[\"|\']\}{2}", "g");
     while (tmpl.search(fooOrBarRe) >= 0) {
         var matches = fooOrBarRe.exec(tmpl);
         var name = matches[1];

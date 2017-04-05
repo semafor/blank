@@ -27155,6 +27155,38 @@ reviews_object = {
             "mod_date": "2011-02-28",
             "comment": "",
             "username": "xyz004"
+        },
+        "xyz005": {
+            "reg_date": null,
+            "object": 3214,
+            "rating": 1,
+            "mod_date": "2011-02-28",
+            "comment": "yes, bad stuff",
+            "username": "xyz004"
+        },
+        "xyz006": {
+            "reg_date": null,
+            "object": 3214,
+            "rating": 2,
+            "mod_date": "2011-02-28",
+            "comment": "yes, ok stuff",
+            "username": "xyz004"
+        },
+        "xyz007": {
+            "reg_date": null,
+            "object": 3214,
+            "rating": 3,
+            "mod_date": "2011-02-28",
+            "comment": "yes, average stuff",
+            "username": "xyz004"
+        },
+        "xyz008": {
+            "reg_date": null,
+            "object": 3214,
+            "rating": 4,
+            "mod_date": "2011-02-28",
+            "comment": "yes, good stuff",
+            "username": "xyz004"
         }
     },
     "2409": {

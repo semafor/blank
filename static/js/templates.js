@@ -52,6 +52,9 @@ mediadb["templates"]["movie_single"] = `
             <p>{{length or 'Ukjent antall'}} minutter</p>
 
             {{trailer_html}}
+
+            <h2>Vurderinger</h2>
+            {{reviews_html or '<p>Filmen er ikke vurdert.</p>'}}
         </div>
 
     </article>
@@ -85,4 +88,12 @@ mediadb["templates"]["person"] = `
 mediadb["templates"]["trailer"] = `
     <h2>Trailer</h2>
     {{youtube_embed}}
+`;
+
+mediadb["templates"]["review"] = `
+    <li class="review">
+        <span class="username">{{username}}</span>
+        <span class="comment">{{comment or "Ingen kommentar."}}</span>
+        <span class="rating rating-{{rating}}"></span>
+    </li>
 `;

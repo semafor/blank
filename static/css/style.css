@@ -425,6 +425,64 @@ main {
     text-transform: capitalize;
 }
 
+.reviews {
+    list-style: none;
+}
+
+.review {
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding: 20px 0;
+}
+
+.review .username:after {
+    content: " —";
+}
+
+.rating {
+    display: block;
+    width: 100px;
+    height: 20px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.rating:before {
+    content: " ";
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-image: url(../img/non-starred.svg);
+    background-size: 20px;
+    opacity: 0.3;
+}
+
+.rating:after {
+    content: " ";
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-image: url(../img/starred.svg);
+    background-size: 20px;
+}
+
+.rating-0:after {
+    display: none;
+}
+
+.rating-1:after {
+    width: 20px;
+}
+
+.rating-2:after {
+    width: 40px;
+}
+
+.rating-3:after {
+    width: 60px;
+}
+
+.rating-4:after {
+    width: 80px;
+}
+
 footer {
     clear: both;
     text-align: center;

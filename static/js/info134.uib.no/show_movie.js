@@ -26,7 +26,7 @@ window.addEventListener("load", function load(event) {
     // Slap some more stuff onto the movie_object
     movie_object.art_path = getNelsonImageUrl(query_params.id);
 
-    // TODO: this can be made much sweeter if template() did iterative repl.
+    // Genre stuffs.
     movie_object.genre_html = "<nav class='genre-nav inline-menu'><ul>";
     for (var i = 0; i < genre_object.length; i++) {
         movie_object.genre_html += template(mediadb.templates.genre, {
@@ -35,7 +35,7 @@ window.addEventListener("load", function load(event) {
     }
     movie_object.genre_html += "</ul></nav>";
 
-    // TODO: this can be made much sweeter if template() did iterative repl.
+    // People stuff.
     movie_object.people_html = "<ul class='actor-list'>";
     var people_list = movie_object.folk ? movie_object.folk.split(",") : [];
     for (var i = 0; i < people_list.length; i++) {
@@ -43,13 +43,23 @@ window.addEventListener("load", function load(event) {
             title: people_list[i].trim()
         });
     }
-    movie_object.genre_html += "</ul>";
+    movie_object.people_html += "</ul>";
 
+    // Trailer stuff.
     movie_object.trailer_html = "";
     if (movie_object["youtube trailer id"]) {
         movie_object.trailer_html = template(mediadb.templates.trailer, {
             youtube_embed: getYouTubeEmbed(movie_object["youtube trailer id"])
         });
+    }
+
+    // Review stuff.
+    if (review_object) {
+        movie_object.reviews_html = "<ul class='reviews'>";
+        for (var reviewId in review_object) {
+            movie_object.reviews_html += template(mediadb.templates.review, review_object[reviewId]);
+        }
+        movie_object.reviews_html += "</ul>";
     }
 
     container.innerHTML = template(mediadb.templates.movie_single, movie_object);
