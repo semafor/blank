@@ -1,5 +1,3 @@
-var mediadb = {};
-
 mediadb["templates"] = {};
 mediadb["templates"]["movie_summary"] = `
     <article class='summary'>
