@@ -97,3 +97,7 @@ mediadb["templates"]["review"] = `
         <span class="rating rating-{{rating}}"></span>
     </li>
 `;
+
+mediadb["templates"]["no_results"] = `
+    <p>Vi kunne ikke finne noen filmer som passet forespørselen.</p>
+`;

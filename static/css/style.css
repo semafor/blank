@@ -141,7 +141,6 @@ header {
     font-size: 16px;
 }
 
-
 .search input {
     width: 150px;
     text-align: center;
@@ -166,6 +165,21 @@ header {
 
 .search button {
     display: none;
+}
+
+.adv-search {
+    font-size: 8pt;
+    position: absolute;
+    right: 0;
+    top: 22px;
+}
+
+.input-group {
+    margin: 10px 0;
+}
+
+.input-group label {
+    display: block;
 }
 
 main {
