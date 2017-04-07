@@ -19,6 +19,7 @@
 		<nav class="site-nav" id="main-nav">
             <p class="site-nav-toggle" onclick="toggleSiteNav()"></p>
             <ul>
+                <li><a href="#">Kari Nordmann</a></li>
                 {{ range .Site.Menus.custom }}
                 <li><a href="{{ .URL | relURL }}.html">{{ .Name }}</a></li>
                 {{ end }}

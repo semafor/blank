@@ -73,6 +73,11 @@ mediadb["templates"]["movie_single"] = `
         <option value="1">1 - Dårlig</option>
     </select>
 
+    <div class="input-group">
+        <label>Din kommentar</label>
+        <textarea></textarea>
+    </div>
+
     <button class="action-button button" onclick="closeDialog()">Lagre</button>
 </div>
 `;
@@ -100,4 +105,8 @@ mediadb["templates"]["review"] = `
 
 mediadb["templates"]["no_results"] = `
     <p>Vi kunne ikke finne noen filmer som passet forespørselen.</p>
+`;
+
+mediadb["templates"]["rating_average"] = `
+    <p>Gjennomsnittlig vurdering: {{avg}}.</p>
 `;

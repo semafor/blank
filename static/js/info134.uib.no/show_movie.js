@@ -55,9 +55,22 @@ window.addEventListener("load", function load(event) {
     // Review stuff.
     if (review_object) {
         movie_object.reviews_html = "<ul class='reviews'>";
+        var avg = 0;
+        var numReviews = 0;
+        var reviews = "";
         for (var reviewId in review_object) {
-            movie_object.reviews_html += template(mediadb.templates.review, review_object[reviewId]);
+            avg += review_object[reviewId].rating;
+            numReviews++;
+            reviews += template(mediadb.templates.review, review_object[reviewId]);
         }
+
+        if (numReviews) {
+            var tmpl = mediadb.templates.rating_average;
+            avg = avg / numReviews;
+            avg = avg.toFixed(1);
+            movie_object.reviews_html += template(tmpl, {'avg': avg});
+        }
+        movie_object.reviews_html += reviews;
         movie_object.reviews_html += "</ul>";
     }
 
