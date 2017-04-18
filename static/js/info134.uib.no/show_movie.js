@@ -4,7 +4,7 @@ window.addEventListener("load", function load(event) {
         return;
     }
 
-    var query_params = get_query_string_parameters();
+    var query_params = get_query_string_parameters(document.location.href);
     if (!query_params.id) {
         window.location.href = "/404.html";
         return;

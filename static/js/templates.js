@@ -81,7 +81,11 @@ mediadb["templates"]["movie_single"] = `
 `;
 
 mediadb["templates"]["genre"] = `
-    <li>{{title}}</li>
+    <li><a href="show_genre.html?title={{title}}">{{title}}</a></li>
+`;
+
+mediadb["templates"]["genre_single"] = `
+    <h2><span>{{title}}</span></h2>
 `;
 
 mediadb["templates"]["person"] = `

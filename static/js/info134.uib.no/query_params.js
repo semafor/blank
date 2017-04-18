@@ -19,10 +19,8 @@ https://tools.ietf.org/html/rfc3986#section-3.4
   or by the end of the URI.
 */
 
-function get_query_string_parameters() {
+function get_query_string_parameters(uri) {
     result = {};
-
-    var uri = document.location.href;
 
     if (uri.indexOf("?") < 0)
         return result;

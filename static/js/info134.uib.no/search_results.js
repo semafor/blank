@@ -54,7 +54,9 @@ window.addEventListener("load", function load(event) {
         return;
     }
 
-	query_params = get_query_string_parameters();
+	query_params = get_query_string_parameters(
+        document.location.href.toLowerCase()
+    );
 
     // Create an array of movie objects and preserve the key.
 	search_results = [];
@@ -73,7 +75,7 @@ window.addEventListener("load", function load(event) {
 
 	if (query_params.director) {
 		search_results = search_results.filter(
-            m => (m.dir && m.dir.toLowerCase() == query_params.director.toLowerCase())
+            m => (m.dir && m.dir.toLowerCase().indexOf(query_params.director) >= 0)
         );
     }
 
@@ -86,7 +88,7 @@ window.addEventListener("load", function load(event) {
 
     if (query_params.country) {
         search_results = search_results.filter(
-            m => (m.dir && m.country.toLowerCase() == query_params.country.toLowerCase())
+            m => (m.dir && m.country.toLowerCase() == query_params.country)
         );
     }
 

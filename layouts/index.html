@@ -1,33 +1,17 @@
 {{ partial "header.html" . }}
 	<main>
         <div class="movie-section front-section recently-added">
-            <h2><span>Alle filmer</span></h2>
-            <a href="{{ "all_movies" | relURL }}.html">All</a>
-        </div>
-
-        <div class="movie-section front-section recently-added">
             <h2><span>Siste tilgjengeliggjorte filmer</span></h2>
-
-            {{ $paginator := .Paginate (where .Site.Pages "Type" "film") }}
-            {{ range $paginator.Pages }}
-                {{- partial "summary.html" . -}}
-            {{ end -}}
+            <div id="recently-added-placeholder"></div>
         </div>
         <div class="movie-section front-section recently-loaned">
             <h2><span>Nettopp lånt</span></h2>
-
-            {{ $paginator := .Paginate (where .Site.Pages "Type" "film") }}
-            {{ range $paginator.Pages }}
-                {{- partial "summary.html" . -}}
-            {{ end -}}
+            <div id="recently-loaned-placeholder"></div>
         </div>
         <div class="movie-section front-section recommended-movies">
             <h2><span>Anbefalinger</span></h2>
 
-    		{{ $paginator := .Paginate (where .Site.Pages "Type" "film") }}
-    		{{ range $paginator.Pages }}
-    			{{- partial "summary.html" . -}}
-    		{{ end -}}
+            <div id="recommended-movies-placeholder"></div>
         </div>
 
         {{ partial "routines.html" . }}

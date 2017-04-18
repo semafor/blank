@@ -63,3 +63,39 @@ function getYouTubeEmbed(yid) {
     return template(tmpl, {yid: yid})
 }
 
+function render_set_of_movies(placeholderId, movies) {
+    var placeholder = document.getElementById(placeholderId);
+    var tmpl = mediadb.templates.movie_summary;
+
+    if (!placeholder) {
+        return;
+    }
+
+    if (movies.length == 0) {
+        placeholder.innerHTML = mediadb.templates.no_results;
+        return;
+    }
+
+    movie_objects = [];
+    for (var key in movies_object) {
+        if (movies.indexOf(key) >= 0) {
+            var obj = movies_object[key];
+            obj["_key"] = key;
+            movie_objects.push(obj);
+        }
+    }
+
+    for (var i = 0; i < movie_objects.length; i++) {
+        movie_objects[i].art_path = getNelsonImageUrl(movie_objects[i]._key);
+        placeholder.innerHTML += template(tmpl, movie_objects[i]);
+    }
+}
+
+function escape(str) {
+    return str.replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;")
+              .replace(/"/g, "&quot;")
+              .replace(/'/g, "&#039;");
+}
+
