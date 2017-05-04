@@ -7,10 +7,13 @@ window.addEventListener("load", function load(event) {
     var query_params = get_query_string_parameters(document.location.href);
     var genre = query_params.title;
     var movies = [];
+    console.log(genres_object)
 
-    for (var k in genres_object) {
-        if (genres_object[k].indexOf(genre) >= 0) {
-            movies.push(k);
+    for (var movieId in genres_object) {
+        for (var genreName in genres_object[movieId]) {
+            if (genreName.indexOf(genre) >= 0) {
+                movies.push(movieId);
+            }
         }
     }
 

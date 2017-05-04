@@ -7,8 +7,6 @@ Supported things:
     "{{foo or "baz"}}" given data {foo: "bar"} will produce "bar".
 
 Note that this will only replace {{foo}}, not {{ foo }} etc.
-
-Author: jdr004
 */
 function template(tmpl, data) {
 
@@ -41,8 +39,6 @@ function template(tmpl, data) {
 
 /*
 Given an movie ID, it will return a nelson URL.
-
-Author: jdr004
 */
 function getNelsonImageUrl(movie_id) {
     var parent = "0";
@@ -76,21 +72,29 @@ function render_set_of_movies(placeholderId, movies) {
         return;
     }
 
-    movie_objects = [];
-    for (var key in movies_object) {
-        if (movies.indexOf(key) >= 0) {
-            var obj = movies_object[key];
-            obj["_key"] = key;
-            movie_objects.push(obj);
-        }
-    }
-
-    for (var i = 0; i < movie_objects.length; i++) {
-        movie_objects[i].art_path = getNelsonImageUrl(movie_objects[i]._key);
-        placeholder.innerHTML += template(tmpl, movie_objects[i]);
+    for (var i = 0; i < movies.length; i++) {
+        /* Use self-executing function expression so as to scope the xhr variable
+         correctly. */
+        (function (i) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://wildboy.uib.no/mongodb/objects/?filter_id=" + movies[i], true);
+            xhr.responseType = "json";
+            xhr.onload = function (e) {
+                var movie_object = xhr.response.rows[0];
+                if (!movie_object) {
+                    console.error("Failed to load movie on URI", e.target.responseURL);
+                    return;
+                }
+                movie_object.art_path = getNelsonImageUrl(movies[i]);
+                movie_object._key = movies[i];
+                placeholder.innerHTML += template(tmpl, movie_object);
+            };
+            xhr.send();
+        })(i);
     }
 }
 
+/* escapes html */
 function escape(str) {
     return str.replace(/&/g, "&amp;")
               .replace(/</g, "&lt;")
@@ -98,4 +102,3 @@ function escape(str) {
               .replace(/"/g, "&quot;")
               .replace(/'/g, "&#039;");
 }
-

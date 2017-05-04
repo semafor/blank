@@ -6,9 +6,14 @@ function search_for_movie(keyword, movies) {
 }
 
 function search_for_genre(genre, movies) {
-    return movies.filter(
-        m => genres_object[m._key].indexOf(genre.toLowerCase()) >= 0
-    );
+    return movies.filter(function (m) {
+        for (var genreName in genres_object[m._key]) {
+            if (genreName.indexOf(genre.toLowerCase()) >= 0) {
+                return true;
+            }
+        }
+        return false;
+    });
 }
 
 function search_for_cast(cast, movies) {
